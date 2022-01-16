@@ -1,0 +1,48 @@
+{
+  "name": "Report",
+  "fields": [
+    {
+      "fieldName": "mail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "media",
+      "otherEntityRelationshipName": "report",
+      "relationshipName": "media"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "equipement",
+      "otherEntityRelationshipName": "report",
+      "relationshipName": "equipement"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "park",
+      "otherEntityRelationshipName": "report",
+      "relationshipName": "park"
+    }
+  ],
+  "entityTableName": "report",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210929124221",
+  "dbhIdName": "ReportD"
+}

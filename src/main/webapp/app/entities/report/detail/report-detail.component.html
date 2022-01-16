@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="report">
+      <h2 data-cy="reportDetailsHeading"><span jhiTranslate="ubxFitnessWebApp.report.detail.title">Report</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ report.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.report.mail">Mail</span></dt>
+        <dd>
+          <span>{{ report.mail }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.report.message">Message</span></dt>
+        <dd>
+          <span>{{ report.message }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.report.date">Date</span></dt>
+        <dd>
+          <span>{{ report.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.report.equipement">Equipement</span></dt>
+        <dd>
+          <div *ngIf="report.equipement">
+            <a [routerLink]="['/equipement', report.equipement?.id, 'view']">{{ report.equipement?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.report.park">Park</span></dt>
+        <dd>
+          <div *ngIf="report.park">
+            <a [routerLink]="['/park', report.park?.id, 'view']">{{ report.park?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/report', report.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

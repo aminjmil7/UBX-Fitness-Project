@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="ParkHeading">
+    <span jhiTranslate="ubxFitnessWebApp.park.home.title">Parks</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ubxFitnessWebApp.park.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-park"
+        [routerLink]="['/park/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ubxFitnessWebApp.park.home.createLabel"> Create a new Park </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="parks?.length === 0">
+    <span jhiTranslate="ubxFitnessWebApp.park.home.notFound">No parks found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="parks && parks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.parkName">Park Name</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.parkAddress">Park Address</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.longtitude">Longtitude</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.latitude">Latitude</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.verified">Verified</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.dateInstall">Date Install</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.dateOpen">Date Open</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.dateClose">Date Close</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.note">Note</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.park.reseller">Reseller</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let park of parks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/park', park.id, 'view']">{{ park.id }}</a>
+          </td>
+          <td>{{ park.parkName }}</td>
+          <td>{{ park.parkAddress }}</td>
+          <td>{{ park.longtitude }}</td>
+          <td>{{ park.latitude }}</td>
+          <td>{{ park.verified }}</td>
+          <td>{{ park.dateInstall | formatMediumDatetime }}</td>
+          <td>{{ park.dateOpen | formatMediumDatetime }}</td>
+          <td>{{ park.dateClose | formatMediumDatetime }}</td>
+          <td>{{ park.note }}</td>
+          <td>{{ park.reseller }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/park', park.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/park', park.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(park)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="media">
+      <h2 data-cy="mediaDetailsHeading"><span jhiTranslate="ubxFitnessWebApp.media.detail.title">Media</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ media.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.fileName">File Name</span></dt>
+        <dd>
+          <span>{{ media.fileName }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.filePath">File Path</span></dt>
+        <dd>
+          <span>{{ media.filePath }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.fileType">File Type</span></dt>
+        <dd>
+          <span>{{ media.fileType }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.authType">Auth Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ubxFitnessWebApp.AuthType.' + media.authType }}">{{ media.authType }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.park">Park</span></dt>
+        <dd>
+          <div *ngIf="media.park">
+            <a [routerLink]="['/park', media.park?.id, 'view']">{{ media.park?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.equipement">Equipement</span></dt>
+        <dd>
+          <div *ngIf="media.equipement">
+            <a [routerLink]="['/equipement', media.equipement?.id, 'view']">{{ media.equipement?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.media.report">Report</span></dt>
+        <dd>
+          <div *ngIf="media.report">
+            <a [routerLink]="['/report', media.report?.id, 'view']">{{ media.report?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/media', media.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="equipement">
+      <h2 data-cy="equipementDetailsHeading"><span jhiTranslate="ubxFitnessWebApp.equipement.detail.title">Equipement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ equipement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.equipement.modelName">Model Name</span></dt>
+        <dd>
+          <span>{{ equipement.modelName }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.equipement.modelNumber">Model Number</span></dt>
+        <dd>
+          <span>{{ equipement.modelNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.equipement.instruction">Instruction</span></dt>
+        <dd>
+          <span>{{ equipement.instruction }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.equipement.verified">Verified</span></dt>
+        <dd>
+          <span>{{ equipement.verified }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.equipement.park">Park</span></dt>
+        <dd>
+          <div *ngIf="equipement.park">
+            <a [routerLink]="['/park', equipement.park?.id, 'view']">{{ equipement.park?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/equipement', equipement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="park">
+      <h2 data-cy="parkDetailsHeading"><span jhiTranslate="ubxFitnessWebApp.park.detail.title">Park</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ park.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.parkName">Park Name</span></dt>
+        <dd>
+          <span>{{ park.parkName }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.parkAddress">Park Address</span></dt>
+        <dd>
+          <span>{{ park.parkAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.longtitude">Longtitude</span></dt>
+        <dd>
+          <span>{{ park.longtitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ park.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.verified">Verified</span></dt>
+        <dd>
+          <span>{{ park.verified }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.dateInstall">Date Install</span></dt>
+        <dd>
+          <span>{{ park.dateInstall | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.dateOpen">Date Open</span></dt>
+        <dd>
+          <span>{{ park.dateOpen | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.dateClose">Date Close</span></dt>
+        <dd>
+          <span>{{ park.dateClose | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.note">Note</span></dt>
+        <dd>
+          <span>{{ park.note }}</span>
+        </dd>
+        <dt><span jhiTranslate="ubxFitnessWebApp.park.reseller">Reseller</span></dt>
+        <dd>
+          <span>{{ park.reseller }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/park', park.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

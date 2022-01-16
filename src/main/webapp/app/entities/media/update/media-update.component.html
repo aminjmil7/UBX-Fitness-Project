@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-media-heading" data-cy="MediaCreateUpdateHeading" jhiTranslate="ubxFitnessWebApp.media.home.createOrEditLabel">
+        Create or edit a Media
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.fileName" for="field_fileName">File Name</label>
+          <input type="text" class="form-control" name="fileName" id="field_fileName" data-cy="fileName" formControlName="fileName" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.filePath" for="field_filePath">File Path</label>
+          <input type="text" class="form-control" name="filePath" id="field_filePath" data-cy="filePath" formControlName="filePath" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.fileType" for="field_fileType">File Type</label>
+          <input type="text" class="form-control" name="fileType" id="field_fileType" data-cy="fileType" formControlName="fileType" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.authType" for="field_authType">Auth Type</label>
+          <select class="form-control" name="authType" formControlName="authType" id="field_authType" data-cy="authType">
+            <option [ngValue]="null">{{ 'ubxFitnessWebApp.AuthType.null' | translate }}</option>
+            <option value="LEARN">{{ 'ubxFitnessWebApp.AuthType.LEARN' | translate }}</option>
+            <option value="TECHFILE">{{ 'ubxFitnessWebApp.AuthType.TECHFILE' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.park" for="field_park">Park</label>
+          <select class="form-control" id="field_park" data-cy="park" name="park" formControlName="park">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="parkOption.id === editForm.get('park')!.value?.id ? editForm.get('park')!.value : parkOption"
+              *ngFor="let parkOption of parksSharedCollection; trackBy: trackParkById"
+            >
+              {{ parkOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.equipement" for="field_equipement">Equipement</label>
+          <select class="form-control" id="field_equipement" data-cy="equipement" name="equipement" formControlName="equipement">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                equipementOption.id === editForm.get('equipement')!.value?.id ? editForm.get('equipement')!.value : equipementOption
+              "
+              *ngFor="let equipementOption of equipementsSharedCollection; trackBy: trackEquipementById"
+            >
+              {{ equipementOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.media.report" for="field_report">Report</label>
+          <select class="form-control" id="field_report" data-cy="report" name="report" formControlName="report">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="reportOption.id === editForm.get('report')!.value?.id ? editForm.get('report')!.value : reportOption"
+              *ngFor="let reportOption of reportsSharedCollection; trackBy: trackReportById"
+            >
+              {{ reportOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

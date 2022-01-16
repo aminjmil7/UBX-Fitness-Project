@@ -1,0 +1,32 @@
+{
+  "name": "Events",
+  "fields": [
+    {
+      "fieldName": "eventName",
+      "dbhColumnName": "eventName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "eventDate",
+      "dbhColumnName": "eventDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "user_id",
+      "dbhColumnName": "user_id",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "Events",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211212124220",
+  "dbhIdName": "EventID"
+}

@@ -1,0 +1,26 @@
+{
+  "ubxFitnessWebApp": {
+    "events": {
+      "home": {
+        "title": "Events",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Events",
+        "createOrEditLabel": "Créer ou éditer un Events",
+        "notFound": "Aucun Events trouvé"
+      },
+      "created": "Un nouveau Events a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Events avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Events avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Events {{ id }} ?"
+      },
+      "detail": {
+        "title": "Events"
+      },
+      "id": "ID",
+      "eventName": "Event Name",
+      "eventDate": "Event Date",
+      "user_id": "User Id"
+    }
+  }
+}

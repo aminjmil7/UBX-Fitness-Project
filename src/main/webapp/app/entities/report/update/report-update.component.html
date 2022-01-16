@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-report-heading" data-cy="ReportCreateUpdateHeading" jhiTranslate="ubxFitnessWebApp.report.home.createOrEditLabel">
+        Create or edit a Report
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.report.mail" for="field_mail">Mail</label>
+          <input type="text" class="form-control" name="mail" id="field_mail" data-cy="mail" formControlName="mail" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.report.message" for="field_message">Message</label>
+          <input type="text" class="form-control" name="message" id="field_message" data-cy="message" formControlName="message" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.report.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.report.equipement" for="field_equipement">Equipement</label>
+          <select class="form-control" id="field_equipement" data-cy="equipement" name="equipement" formControlName="equipement">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                equipementOption.id === editForm.get('equipement')!.value?.id ? editForm.get('equipement')!.value : equipementOption
+              "
+              *ngFor="let equipementOption of equipementsSharedCollection; trackBy: trackEquipementById"
+            >
+              {{ equipementOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="ubxFitnessWebApp.report.park" for="field_park">Park</label>
+          <select class="form-control" id="field_park" data-cy="park" name="park" formControlName="park">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="parkOption.id === editForm.get('park')!.value?.id ? editForm.get('park')!.value : parkOption"
+              *ngFor="let parkOption of parksSharedCollection; trackBy: trackParkById"
+            >
+              {{ parkOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

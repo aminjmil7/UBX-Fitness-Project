@@ -1,0 +1,76 @@
+{
+  "name": "Park",
+  "fields": [
+    {
+      "fieldName": "parkName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parkAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "longtitude",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "verified",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateInstall",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dateOpen",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dateClose",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reseller",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "equipement",
+      "otherEntityRelationshipName": "park",
+      "relationshipName": "equipement"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "media",
+      "otherEntityRelationshipName": "park",
+      "relationshipName": "media"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "report",
+      "otherEntityRelationshipName": "park",
+      "relationshipName": "report"
+    }
+  ],
+  "entityTableName": "park",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210929124219",
+  "dbhIdName": "ParkID"
+}

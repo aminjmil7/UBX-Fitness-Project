@@ -1,0 +1,90 @@
+<div>
+  <h2 id="page-heading" data-cy="EquipementHeading">
+    <span jhiTranslate="ubxFitnessWebApp.equipement.home.title">Equipements</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ubxFitnessWebApp.equipement.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-equipement"
+        [routerLink]="['/equipement/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ubxFitnessWebApp.equipement.home.createLabel"> Create a new Equipement </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="equipements?.length === 0">
+    <span jhiTranslate="ubxFitnessWebApp.equipement.home.notFound">No equipements found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="equipements && equipements.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.equipement.modelName">Model Name</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.equipement.modelNumber">Model Number</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.equipement.instruction">Instruction</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.equipement.verified">Verified</span></th>
+          <th scope="col"><span jhiTranslate="ubxFitnessWebApp.equipement.park">Park</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipement of equipements; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/equipement', equipement.id, 'view']">{{ equipement.id }}</a>
+          </td>
+          <td>{{ equipement.modelName }}</td>
+          <td>{{ equipement.modelNumber }}</td>
+          <td>{{ equipement.instruction }}</td>
+          <td>{{ equipement.verified }}</td>
+          <td>
+            <div *ngIf="equipement.park">
+              <a [routerLink]="['/park', equipement.park?.id, 'view']">{{ equipement.park?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/equipement', equipement.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/equipement', equipement.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(equipement)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
