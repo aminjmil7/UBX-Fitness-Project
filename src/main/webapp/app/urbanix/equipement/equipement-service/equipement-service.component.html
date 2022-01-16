@@ -1,0 +1,40 @@
+<div class="w-100 h-100 body p-2">
+  <div style="border-left: 7px solid #ff8d00" class="pl-2">
+    <h4 class="font-weight-bold">{{ equipement.modelName }}</h4>
+    <h6 class="font-weight-bolder">{{ equipement.modelNumber }}</h6>
+  </div>
+  <div class="container-fluid">
+    <div style="display: flex; gap: 7px">
+      <fa-icon [icon]="['fas', 'map-marker-alt']" size="1x" [styles]="{ stroke: '#ff8d00', color: '#ff8d00' }" *ngIf="park.id"> </fa-icon>
+      <h5 class="font-weight-bold" style="color: #ff8d00" *ngIf="park.id">{{ park.parkAddress }}</h5>
+      <h5 class="font-weight-bold" style="color: #ff8d00" *ngIf="!park.id">register this park!</h5>
+    </div>
+    <ngb-carousel *ngIf="images">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="wrapper" *ngIf="image.filePath">
+          <img [src]="image.filePath" alt="Random first slide" />
+        </div>
+        <div class="carousel-caption"></div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+  <div>
+    <div class="serviceLine" *ngFor="let service of services">
+      <div class="service-preview">
+        <img *ngIf="isImage(service.fileType || '')" [src]="service.filePath" />
+        <img *ngIf="isVideo(service.fileType || '')" src="../../../../content/images/play.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'PDF'" src="../../../../content/images/pdf.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'TXT'" src="../../../../content/images/txt.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'XLSX'" src="../../../../content/images/excel.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'PPTX'" src="../../../../content/images/pptx.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'DOCX'" src="../../../../content/images/docx.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'ZIP'" src="../../../../content/images/rar.png" />
+        <img *ngIf="service.fileType?.toLocaleUpperCase() === 'RAR'" src="../../../../content/images/rar.png" />
+      </div>
+      <div class="service-info">
+        <span class="service-name">{{ service.fileName }}</span>
+      </div>
+    </div>
+  </div>
+</div>

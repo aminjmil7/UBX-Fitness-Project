@@ -1,0 +1,131 @@
+<div class="row jutstify-content-center m-3">
+  <div class="col-md-6">
+    <div class="title-content d-flex mt-3 mb-4">
+      <div class="col-md-3 align-self-center"><span class="title-text">Admin</span></div>
+      <div class="col-md-9 align-self-center text-right">
+        <button type="button" class="btn btnAdd float-right" (click)="selectedUser = {}">
+          <i class="fa fa-plus"></i>
+          <span>Add Admin</span>
+        </button>
+      </div>
+    </div>
+    <div class="list p-3">
+      <div class="search-list">
+        <div class="form-group search position-relative">
+          <i class="fa fa-search icon-input"></i>
+          <input
+            type="text"
+            class="form-control has-icon"
+            placeholder="Search"
+            name="search"
+            (keyup)="search()"
+            [(ngModel)]="currentSearch"
+          />
+        </div>
+      </div>
+
+      <div class="table-responsive" *ngIf="users">
+        <table class="w-100">
+          <thead>
+            <tr>
+              <th><span jhiTranslate="global.field.id">ID</span></th>
+              <th><span jhiTranslate="userManagement.firstName">Name</span></th>
+              <th><span jhiTranslate="userManagement.email">Email</span></th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="users">
+            <tr *ngFor="let user of users" (click)="selectedUser = user" class="tbody-line">
+              <td>
+                <span class="text-orange">{{ user.id }}</span>
+              </td>
+              <td>
+                <span>{{ user.firstName }}</span>
+              </td>
+              <td>
+                <span>{{ user.email }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="size-list">
+        <select class="form-control size" name="size" [(ngModel)]="size" (change)="loadAll()">
+          <option *ngFor="let size of sizes" [ngValue]="size">Show {{ size }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="update p-3 mt-3 mb-4">
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()">
+        <div *ngIf="selectedUser">
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
+              <input type="text" class="form-control" name="firstName" [(ngModel)]="selectedUser.firstName" />
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="userManagement.lastName">Last Name</label>
+              <input type="text" class="form-control" name="lastName" [(ngModel)]="selectedUser.lastName" />
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="userManagement.email">Email</label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="selectedUser.email" />
+            </div>
+
+            <div class="form-group col-md-6" *ngIf="selectedUser.id">
+              <label class="form-control-label">Status</label>
+              <select class="form-control" name="activated" [(ngModel)]="selectedUser.activated">
+                <option [value]="true">Activated</option>
+                <option [value]="false">Deactivated</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6" *ngIf="!selectedUser.id">
+              <label class="form-control-label" jhiTranslate="userManagement.password">Password</label>
+              <input type="password" class="form-control" name="password" [(ngModel)]="password" />
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6"></div>
+          </div>
+
+          <div class="avatar-list d-flex" *ngIf="selectedUser.id">
+            <div class="uploadImage box-a">
+              <div class="avatar-edit">
+                <input type="file" id="imageUpload" #fileInput (change)="uploadFile($event)" accept="image/*" />
+              </div>
+              <button type="button" class="btn btn-sm btn-upload" (click)="fileInput.click()">
+                <span class="uploadIcon text-white">➕</span>
+              </button>
+            </div>
+
+            <div class="avatar-preview p-0">
+              <div [style.backgroundImage]="'url(' + selectedUser.imageUrl + ')'"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-right" *ngIf="selectedUser">
+          <button
+            type="button"
+            class="btn m-2"
+            style="background-color: #bd0202"
+            *ngIf="selectedUser.id"
+            (click)="deleteUser(selectedUser.login!)"
+          >
+            <span class="text-white">Delete</span>
+          </button>
+          <button type="submit" class="btn m-2" style="background-color: #00b300">
+            <span class="text-white">Save</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

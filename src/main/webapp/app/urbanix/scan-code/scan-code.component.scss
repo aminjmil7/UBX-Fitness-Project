@@ -1,0 +1,46 @@
+.content-title {
+  height: 100px;
+  font-size: 20px;
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 80px;
+  margin-bottom: -50px;
+}
+
+.scan-content {
+  text-align: -webkit-center;
+}
+
+.scan-border {
+  // Slanted
+  text-align: center;
+  border-radius: 1.75rem !important;
+  background-image: repeating-linear-gradient(0deg, #ff8200, #ff8200 50px, transparent 10px, transparent 55px),
+    // left
+    repeating-linear-gradient(90deg, #ff8200, #ff8200 50px, transparent 10px, transparent 55px),
+    // top
+    repeating-linear-gradient(180deg, #ff8200, #ff8200 50px, transparent 10px, transparent 55px),
+    // right
+    repeating-linear-gradient(270deg, #ff8200, #ff8200 50px, transparent 10px, transparent 55px) // bottom
+;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
+  background-repeat: no-repeat;
+  width: 175px;
+  height: 175px;
+}
+
+zxing-scanner {
+  border-radius: 1.75rem !important;
+  position: relative;
+  width: 85%;
+  height: 85%;
+  top: 8%;
+  left: 8%;
+}
+
+::ng-deep video {
+  border-radius: 1.25rem !important;
+  height: 100% !important;
+}

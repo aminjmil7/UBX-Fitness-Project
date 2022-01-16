@@ -14,13 +14,13 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="model_name" type="varchar(255)">
+            <column name="model_name" type="nvarchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="model_number" type="varchar(255)">
+            <column name="model_number" type="nvarchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="instruction" type="varchar(255)">
+            <column name="instruction" type="nvarchar(1000)">
                 <constraints nullable="true" />
             </column>
             <column name="verified" type="boolean">

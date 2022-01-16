@@ -5,27 +5,48 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import * as dayjs from 'dayjs';
 
 import { AccountService } from 'app/core/auth/account.service';
+import { FindLanguageFromKeyPipe } from 'app/shared/language/find-language-from-key.pipe';
+import { Account } from 'app/core/auth/account.model';
+import { CurrentDeviceService } from './current-device.service';
 
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
+  styleUrls: ['./main.scss'],
 })
 export class MainComponent implements OnInit {
+  isMobile = false;
+  currentAccount: Account | any;
   private renderer: Renderer2;
 
   constructor(
     private accountService: AccountService,
     private titleService: Title,
     private router: Router,
+    private findLanguageFromKeyPipe: FindLanguageFromKeyPipe,
     private translateService: TranslateService,
+    private checkdeviceservice: CurrentDeviceService,
     rootRenderer: RendererFactory2
   ) {
     this.renderer = rootRenderer.createRenderer(document.querySelector('html'), null);
   }
 
   ngOnInit(): void {
+    this.checkdeviceservice.CheckDevice();
+    this.isMobile = this.checkdeviceservice.isMobile;
+
     // try to log in automatically
-    this.accountService.identity().subscribe();
+    this.accountService.identity().subscribe(account => {
+      this.currentAccount = account;
+      if (!account) {
+        if (this.isMobile) {
+          this.router.navigate(['/login']);
+        }
+        if (!this.isMobile) {
+          this.router.navigate(['/login/Admin']);
+        }
+      }
+    });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -40,6 +61,8 @@ export class MainComponent implements OnInit {
       this.updateTitle();
       dayjs.locale(langChangeEvent.lang);
       this.renderer.setAttribute(document.querySelector('html'), 'lang', langChangeEvent.lang);
+
+      this.updatePageDirection();
     });
   }
 
@@ -57,5 +80,13 @@ export class MainComponent implements OnInit {
       pageTitle = 'global.title';
     }
     this.translateService.get(pageTitle).subscribe(title => this.titleService.setTitle(title));
+  }
+
+  private updatePageDirection(): void {
+    this.renderer.setAttribute(
+      document.querySelector('html'),
+      'dir',
+      this.findLanguageFromKeyPipe.isRTL(this.translateService.currentLang) ? 'rtl' : 'ltr'
+    );
   }
 }

@@ -1,0 +1,23 @@
+<div class="container" style="width: 100%" #calendar>
+  <mat-card>
+    <mat-calendar
+      [startAt]="date"
+      (nextClicked)="log($event)"
+      (viewChanged)="onViewChanged($event)"
+      (monthSelected)="onSelectedMonth($event)"
+      (selectedChange)="onSelectDate($event)"
+    >
+      <!-- [dateClass]="dateClass()" -->
+    </mat-calendar>
+
+    <div class="d-flex">
+      <button class="btn event-button m-1 pn-1" *ngFor="let event of eventsSelected">
+        <span>{{ event.eventName }}</span>
+      </button>
+      <button class="btn event-button m-1 pn-1" (click)="addEvents()" *ngIf="date">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+    <span class="workouts">Workouts</span>
+  </mat-card>
+</div>

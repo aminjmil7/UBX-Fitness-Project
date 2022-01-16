@@ -1,13 +1,16 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Park;
 import com.mycompany.myapp.repository.ParkRepository;
 import com.mycompany.myapp.service.ParkQueryService;
 import com.mycompany.myapp.service.ParkService;
 import com.mycompany.myapp.service.criteria.ParkCriteria;
 import com.mycompany.myapp.service.dto.ParkDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -185,5 +188,41 @@ public class ParkResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code GET  /parks} : get all the parks.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of parks in body.
+     */
+    @GetMapping("/parksByDistance/{distanceMax},{lat},{lon}")
+    public List<Park> getParksByDistance(@PathVariable double distanceMax, @PathVariable BigDecimal lat, @PathVariable BigDecimal lon) {
+        List<Park> parksList = parkQueryService.getParksByDistance();
+        List<Park> parksinInterval = new ArrayList<Park>();
+        if (parksList.size() != 0) {
+            for (Park park : parksList) {
+                final int R = 6371; // Radius of the earth
+
+                double latDistance = Math.toRadians(park.getLatitude().doubleValue() - lat.doubleValue());
+                double lonDistance = Math.toRadians(park.getLongtitude().doubleValue() - lon.doubleValue());
+
+                double a =
+                    Math.sin(latDistance / 2) *
+                    Math.sin(latDistance / 2) +
+                    Math.cos(Math.toRadians(lat.doubleValue())) *
+                    Math.cos(Math.toRadians(lat.doubleValue())) *
+                    Math.sin(lonDistance / 2) *
+                    Math.sin(lonDistance / 2);
+                double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                double distance = Math.pow((R * c), 2);
+
+                if (distance <= distanceMax && park.getVerified()) {
+                    parksinInterval.add(park);
+                }
+            }
+        }
+
+        return parksinInterval;
     }
 }

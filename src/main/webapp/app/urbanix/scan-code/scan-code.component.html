@@ -1,0 +1,17 @@
+<div class="content-body">
+  <div class="content-title">
+    <span class="scan-title">Scan Code</span>
+    <span></span>
+  </div>
+
+  <div class="scan-content">
+    <div class="scan-border">
+      <zxing-scanner
+        (scanSuccess)="onCodeResult($event)"
+        (camerasFound)="onCamerasFound($event)"
+        (permissionResponse)="onHasPermission($event)"
+      >
+      </zxing-scanner>
+    </div>
+  </div>
+</div>

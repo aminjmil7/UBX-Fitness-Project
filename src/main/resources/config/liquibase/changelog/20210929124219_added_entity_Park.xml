@@ -14,16 +14,16 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="park_name" type="varchar(255)">
+            <column name="park_name" type="nvarchar(1000)">
                 <constraints nullable="true" />
             </column>
-            <column name="park_address" type="varchar(255)">
+            <column name="park_address" type="nvarchar(1000)">
                 <constraints nullable="true" />
             </column>
-            <column name="longtitude" type="decimal(21,2)">
+            <column name="latitude" type="decimal(30,25)">
                 <constraints nullable="true" />
             </column>
-            <column name="latitude" type="decimal(21,2)">
+            <column name="longtitude" type="decimal(30,25)">
                 <constraints nullable="true" />
             </column>
             <column name="verified" type="boolean">
@@ -38,10 +38,10 @@
             <column name="date_close" type="${datetimeType}">
                 <constraints nullable="true" />
             </column>
-            <column name="note" type="varchar(255)">
+            <column name="reseller" type="nvarchar(1000)">
                 <constraints nullable="true" />
             </column>
-            <column name="reseller" type="varchar(255)">
+            <column name="note" type="nvarchar(1000)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

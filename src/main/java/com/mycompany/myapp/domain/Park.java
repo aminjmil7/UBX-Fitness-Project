@@ -27,10 +27,10 @@ public class Park implements Serializable {
     @Column(name = "park_address")
     private String parkAddress;
 
-    @Column(name = "longtitude", precision = 21, scale = 2)
+    @Column(name = "longtitude", precision = 30, scale = 26)
     private BigDecimal longtitude;
 
-    @Column(name = "latitude", precision = 21, scale = 2)
+    @Column(name = "latitude", precision = 30, scale = 26)
     private BigDecimal latitude;
 
     @Column(name = "verified")

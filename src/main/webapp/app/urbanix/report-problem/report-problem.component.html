@@ -1,0 +1,58 @@
+<div class="content-body">
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8 divTitle">
+      <span class="reportTitle">Report a problem</span>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+      <form name="form" role="form" (ngSubmit)="save()" [formGroup]="editForm">
+        <div class="form-group">
+          <input type="mail" class="form-control" id="mail" name="mail" placeholder="Email" formControlName="mail" data-cy="mail" />
+        </div>
+
+        <div class="form-group">
+          <textarea
+            type="textarea"
+            class="form-control"
+            id="field_message"
+            name="message"
+            placeholder="Details"
+            rows="4"
+            formControlName="message"
+            data-cy="message"
+          >
+          </textarea>
+        </div>
+
+        <div class="avatar-list d-flex">
+          <div class="uploadImage">
+            <div class="avatar-edit">
+              <input type="file" id="imageUpload" #fileInput (change)="uploadFile($event)" />
+            </div>
+            <button type="button" class="btn btn-sm btn-upload" (click)="fileInput.click()">
+              <span class="uploadIcon text-white">➕</span>
+            </button>
+          </div>
+
+          <div class="avatar-preview col-md-3 p-0" *ngFor="let file of urlFilesList">
+            <div *ngIf="isImage(file.fileType || '')" [style.backgroundImage]="'url(' + file.fileReader + ')'"></div>
+            <img *ngIf="isVideo(file.fileType || '')" src="../../../../content/images/play.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'PDF'" src="../../../../content/images/pdf.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'TXT'" src="../../../../content/images/txt.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'XLSX'" src="../../../../content/images/excel.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'PPTX'" src="../../../../content/images/pptx.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'DOCX'" src="../../../../content/images/docx.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'ZIP'" src="../../../../content/images/rar.png" />
+            <img *ngIf="file.fileType?.toLocaleUpperCase() === 'RAR'" src="../../../../content/images/rar.png" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btnSend" data-cy="submit">
+          <span class="font-send"> Send</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

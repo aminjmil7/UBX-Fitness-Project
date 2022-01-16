@@ -1,7 +1,7 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav data-cy="navbar" class="navbar navbar-light navbar-expand-md bg-light">
   <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
     <span class="logo-img"></span>
-    <span jhiTranslate="global.title" class="navbar-title">UBXFitnessWebApp</span>
+    <span jhiTranslate="global.title" class="navbar-title">UBXFitness</span>
     <span class="navbar-version">{{ version }}</span>
   </a>
   <a
@@ -27,6 +27,40 @@
         </a>
       </li>
       <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+      <li
+        *ngSwitchCase="true"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        routerLink="park/new"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" id="entity-menu" data-cy="park">
+          <span class="font-weight-bold">
+            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+            <span>Register a park</span>
+          </span>
+        </a>
+      </li>
+
+      <li
+        *ngSwitchCase="true"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        routerLink="report/new"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" id="entity-menu" data-cy="report">
+          <span class="font-weight-bold">
+            <i class="fa fa-exclamation-circle"></i>
+            <span>Report a problem</span>
+          </span>
+        </a>
+      </li>
+
       <li
         *ngSwitchCase="true"
         ngbDropdown

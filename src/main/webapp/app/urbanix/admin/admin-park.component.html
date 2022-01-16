@@ -1,0 +1,221 @@
+<div class="row jutstify-content-center m-3">
+  <div class="col-md-6">
+    <div class="title-content d-flex mt-3 mb-4">
+      <div class="col-md-3 align-self-center"><span class="title-text">Park</span></div>
+      <div class="col-md-9 align-self-center text-right">
+        <button type="button" class="btn btnAdd float-right" (click)="newPark()">
+          <i class="fa fa-plus"></i>
+          <span>Add Park</span>
+        </button>
+      </div>
+    </div>
+    <div class="list p-3">
+      <div class="search-list">
+        <div class="form-group search position-relative">
+          <i class="fa fa-search icon-input"></i>
+          <input
+            type="text"
+            class="form-control has-icon"
+            placeholder="Search"
+            name="search"
+            (keyup)="search()"
+            [(ngModel)]="currentSearch"
+          />
+        </div>
+      </div>
+
+      <div class="table-responsive" *ngIf="parks">
+        <table class="w-100">
+          <thead>
+            <tr>
+              <th><span jhiTranslate="global.field.id">ID</span></th>
+              <th><span jhiTranslate="ubxFitnessApp.park.parkName">Name</span></th>
+              <th><span jhiTranslate="ubxFitnessApp.park.parkAddress">Address</span></th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="parks">
+            <tr *ngFor="let park of parks" (click)="loadPark(park)" class="tbody-line">
+              <td>
+                <span class="text-orange">{{ park.id }}</span>
+              </td>
+              <td>
+                <span>{{ park.parkName }}</span>
+              </td>
+              <td>
+                <span>{{ park.parkAddress }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="size-list">
+        <select class="form-control size" name="size" [(ngModel)]="size" (change)="loadAll()">
+          <option *ngFor="let size of sizes" [ngValue]="size">Show {{ size }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="update p-3 mt-3 mb-4">
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()">
+        <div *ngIf="selectedPark">
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.parkName">park Name</label>
+              <input type="text" class="form-control" name="parkName" [(ngModel)]="selectedPark.parkName" />
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.gps">GPS</label>
+              <div class="form-group d-flex">
+                <input type="text" class="form-control" name="longtitude" [(ngModel)]="selectedPark.longtitude" />
+                <input type="text" class="form-control" name="latitude" [(ngModel)]="selectedPark.latitude" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.country">Country</label>
+              <input type="text" class="form-control" name="parkAddress" [(ngModel)]="selectedPark.parkAddress" />
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-control-label">Status</label>
+              <select class="form-control" name="activated" [(ngModel)]="selectedPark.verified">
+                <option [value]="true">Activated</option>
+                <option [value]="false">Deactivated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row ml-1">
+            <div class="form-group">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.media">media</label><br />
+              <div class="avatar-list d-flex">
+                <div class="uploadImage box-a">
+                  <div class="avatar-edit">
+                    <input type="file" id="imageUpload" #fileInput (change)="uploadFile($event)" accept="image/*" />
+                  </div>
+                  <button type="button" class="btn btn-sm btn-upload" (click)="fileInput.click()">
+                    <span class="uploadIcon text-white">➕</span>
+                  </button>
+                </div>
+
+                <div *ngFor="let media of selectedPark.media">
+                  <div class="badge-delete" matBadge="❌" matBadgeColor="warn" (click)="deleteMedia(media)"></div>
+                  <div class="avatar-preview p-0">
+                    <div [style.backgroundImage]="'url(' + media.filePath + ')'">
+                      <i class="zoom-in" (click)="openMedia(contentMedia)"></i>
+                    </div>
+
+                    <ng-template #contentMedia>
+                      <div class="modal-header">
+                        <button type="button" class="close" (click)="closeMedia()"><i class="fa fa-close text-danger"></i></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="image-preview" [style.backgroundImage]="'url(' + media.filePath + ')'"></div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row ml-1" *ngIf="selectedPark.id">
+            <div class="form-group w-100">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.equipement">Equipement</label><br />
+              <div class="row">
+                <div class="equipementLine p-0 m-1" *ngFor="let equipement of selectedPark.equipements">
+                  <div class="equipement-avatar-preview">
+                    <img [src]="equipement.modalPreview" />
+                  </div>
+                  <div class="modelInfo d-flex">
+                    <span class="modelName">{{ equipement.modelName }}</span
+                    ><br />
+                    <span class="modelNumber">{{ equipement.modelNumber }}</span>
+                    <div class="col-md-9 align-self-center text-right">
+                      <div class="badge badge-pill badge-delete-equipement" (click)="deleteEquipement(equipement)">❌</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.parkHours">Park Hours</label>
+              <div class="form-group d-flex">
+                <input type="time" class="form-control mr-1" name="dateOpen" [(ngModel)]="dateOpen" />
+                <input type="time" class="form-control" name="dateClose" [(ngModel)]="dateClose" />
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.reseller">Reseller</label>
+              <input type="text" class="form-control" name="reseller" [(ngModel)]="selectedPark.reseller" />
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.dateInstall">Install Date</label>
+              <input type="date" class="form-control" name="dateInstall" [(ngModel)]="dateInstall" />
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.park.note">Note</label>
+              <input type="text" class="form-control" name="note" [(ngModel)]="selectedPark.note" />
+            </div>
+          </div>
+
+          <div class="row m-1 form-group" *ngIf="selectedPark.id">
+            <span style="font-size: 16px" jhiTranslate="ubxFitnessApp.equipement.add">Equipement</span><br />
+            <div class="form-group w-100">
+              <label class="form-control-label" jhiTranslate="ubxFitnessApp.equipement.equipementID">Equipement ID</label>
+              <input type="text" class="form-control has" name="equipementID" [(ngModel)]="equipementID" />
+              <i class="fa fa-plus icon-input-add" (click)="AddEquipement()"></i>
+              <div *ngIf="messageSuccess || messageError">
+                <small class="form-text text-danger" [hidden]="!messageError">{{ messageError }}</small>
+                <small class="form-text text-success" [hidden]="!messageSuccess">{{ messageSuccess }}</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row m-1 form-group" *ngIf="selectedPark.id">
+            <span style="font-size: 16px; color: rgb(247, 43, 43)">Reports</span><br />
+
+            <div class="table-responsive" *ngIf="selectedPark.reports">
+              <table class="w-100">
+                <tbody>
+                  <tr *ngFor="let report of selectedPark.reports" class="tbody-line">
+                    <td>
+                      <span class="text-orange">{{ report.mail }}</span>
+                    </td>
+                    <td>
+                      <span>{{ report.message }}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-right" *ngIf="selectedPark">
+          <button
+            type="button"
+            class="btn m-2"
+            style="background-color: #bd0202"
+            *ngIf="selectedPark.id"
+            (click)="deletePark(selectedPark.id!)"
+          >
+            <span class="text-white">Delete</span>
+          </button>
+          <button type="submit" class="btn m-2" style="background-color: #00b300">
+            <span class="text-white">Save</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

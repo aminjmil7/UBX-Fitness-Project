@@ -1,0 +1,33 @@
+mat-tab {
+  width: 100%;
+}
+
+::ng-deep .mat-tab-label {
+  min-width: 50% !important;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: #95959599;
+  font-size: 12px;
+}
+
+::ng-deep .mat-tab-label-active {
+  color: #ff8200 !important;
+}
+
+::ng-deep .mat-ink-bar {
+  visibility: hidden !important;
+}
+
+::ng-deep .mat-tab-header {
+  border-bottom: 0px !important;
+  margin: -9px 0px !important;
+}
+
+agm-map {
+  height: 370px;
+}
+
+::ng-deep .agm-map-container-inner {
+  margin: 10px !important;
+  border-radius: 0.75rem !important;
+}

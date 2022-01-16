@@ -1,0 +1,111 @@
+<mat-drawer-container class="container" hasBackdrop="false">
+  <mat-drawer #drawer mode="over" position="end" class="menu">
+    <div>
+      <div class="d-flex justify-content-between mb-2 mr-3" style="align-items: center" routerLinkActive="active" routerLink="/urbanixHome">
+        <img src="../../../content/images/ubx-badge.PNG" alt="badge" />
+        <fa-icon [icon]="['fas', 'share-alt']" size="lg" [styles]="{ stroke: '#ff8d00', color: '#ff8d00' }"></fa-icon>
+      </div>
+      <div>
+        <span class="font-weight-bold mb-2" routerLinkActive="active" routerLink="/park/register">
+          <img class="icon" src="../../../content/images/add.png" alt="Register a park" />
+          Register a park
+        </span>
+        <span class="font-weight-bold" routerLinkActive="active" routerLink="/reportProblem">
+          <img class="icon" src="../../../content/images/exclamation.png" alt="Report a problem" />
+          Report a problem
+        </span>
+        <hr class="mt-2 mb-2" />
+        <span routerLinkActive="active" routerLink="/park/near-me">
+          <img class="icon" src="../../../content/images/location.png" alt="Park near me" />
+          Park near me
+        </span>
+        <hr class="mt-2 mb-2" />
+
+        <span class="justify-content-between">
+          <div>
+            <img class="icon" src="../../../content/images/person.png" alt="My profile" />
+            My Profile
+          </div>
+          <div class="up" (click)="openProfile()" [ngClass]="{ rotate: rotateProfile }">
+            <fa-icon [icon]="['fas', 'chevron-down']" size="1x"></fa-icon>
+          </div>
+        </span>
+        <span class="justify-content-between mt-3 mb-3 ml-5" *ngIf="rotateProfile" routerLink="/Workout">
+          <div>
+            <i class="fa fa-calendar"></i>
+            Workout Calendar
+          </div>
+        </span>
+        <hr class="mt-2 mb-2" />
+
+        <span routerLinkActive="active" routerLink="/equipement/learn">
+          <img class="icon" src="../../../content/images/learn.png" alt="My profile" />
+          Learn
+        </span>
+        <hr class="mt-2 mb-2" />
+        <span routerLinkActive="active" routerLink="/scan-code">
+          <img class="icon" src="../../../content/images/qr-code.png" alt="My profile" />
+          Scan QR
+        </span>
+        <hr class="mt-2 mb-2" />
+        <span routerLinkActive="active" routerLink="/equipement/service">
+          <img class="icon" src="../../../content/images/grid.png" alt="My profile" />
+          Service
+        </span>
+        <hr class="mt-2 mb-2" />
+        <span class="justify-content-between">
+          <div>
+            <img class="icon" src="../../../content/images/settings.png" alt="My profile" />
+            Settings
+          </div>
+          <div class="up" (click)="openSetting()" [ngClass]="{ rotate: rotateSetting }">
+            <fa-icon [icon]="['fas', 'chevron-down']" size="1x"></fa-icon>
+          </div>
+        </span>
+
+        <hr class="mt-2 mb-2" />
+        <span class="justify-content-between">
+          <div>
+            <img class="icon" src="../../../content/images/language.png" alt="My profile" />
+            Language
+          </div>
+          <div class="up">
+            <fa-icon [icon]="['fas', 'chevron-down']" size="1x"></fa-icon>
+          </div>
+        </span>
+
+        <hr class="mt-2 mb-2" />
+        <span class="justify-content-between">
+          <div (click)="logout()">
+            <div class="exit"></div>
+            Logout
+          </div>
+        </span>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content (click)="closeSidebar(drawer)" class="p-0">
+    <div class="d-flex justify-content-between w-100 p-2">
+      <fa-icon [icon]="['fas', 'chevron-circle-left']" size="2x" (click)="previousState()"></fa-icon>
+      <div style="width: 70px" class="d-flex justify-content-between">
+        <img
+          style="max-width: 28px; max-height: 28px"
+          src="../../../content/images/qr-code.png"
+          alt="My profile"
+          routerLinkActive="active"
+          routerLink="/scan-code"
+        />
+        <img
+          style="max-width: 28px; max-height: 28px"
+          src="../../../content/images/list.png"
+          alt="My profile"
+          (click)="try(drawer, $event)"
+        />
+      </div>
+    </div>
+    <hr class="w-100 mt-2 mb-2" />
+    <div class="w-100">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

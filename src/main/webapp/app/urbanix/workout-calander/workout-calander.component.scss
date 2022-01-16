@@ -1,0 +1,28 @@
+.workouts {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.event-button {
+  text-transform: none !important;
+  background-color: #ff8d00;
+  color: white;
+}
+
+::ng-deep .mat-button-wrapper {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+::ng-deep .special-date .mat-calendar-body-cell-content {
+  color: #ff8d00 !important;
+  text-decoration: underline !important;
+}
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  background-color: #ff8d00 !important;
+  border-color: transparent !important;
+  color: white !important;
+}

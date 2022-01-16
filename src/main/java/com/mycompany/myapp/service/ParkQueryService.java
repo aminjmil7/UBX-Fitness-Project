@@ -140,4 +140,8 @@ public class ParkQueryService extends QueryService<Park> {
         }
         return specification;
     }
+
+    public List<Park> getParksByDistance() {
+        return parkRepository.findAll();
+    }
 }

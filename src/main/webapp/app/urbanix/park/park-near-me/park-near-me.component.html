@@ -1,0 +1,28 @@
+<mat-tab-group>
+  <mat-tab class="ml-3 mr-3" label="List view">
+    <jhi-park-list [parks]="parksInCircle"></jhi-park-list>
+  </mat-tab>
+  <mat-tab class="ml-3 mr-3" label="Map view">
+    <div>
+      <agm-map [latitude]="lat" [longitude]="long" [zoom]="10">
+        <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
+
+        <ng-container *ngFor="let marker of parks; let i = index">
+          <agm-marker *ngIf="marker.isShown" [latitude]="marker.latitude!" [longitude]="marker.longtitude!" [iconUrl]="markerIcon">
+            <!-- [label]="m.label" -->
+          </agm-marker>
+        </ng-container>
+
+        <agm-circle
+          [latitude]="lat"
+          [longitude]="long"
+          (radiusChange)="changeRadius($event)"
+          [radius]="radius"
+          [fillColor]="'gray'"
+          [editable]="true"
+        >
+        </agm-circle>
+      </agm-map>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,41 @@
+<div>
+  <div class="parkLine">
+    <div class="avatar-preview">
+      <img [src]="park.modalPreview" />
+
+      <div class="info">
+        <span class="infoText">{{ park.distance }}</span>
+        <span class="infoUnit">{{ park.distanceUnit }}</span>
+      </div>
+
+      <div class="parkInfo">
+        <span class="parkName">{{ park.parkName }}</span
+        ><br />
+        <i class="fa fa-map-marker"></i>
+        <span class="parkAdresse">{{ park.parkAddress }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="equipementLine" *ngFor="let equipement of equipements">
+      <div class="equipement-preview">
+        <img [src]="equipement.modalPreview" />
+      </div>
+      <div class="modelInfo">
+        <span class="modelName">{{ equipement.modelName }}</span
+        ><br />
+        <span class="modelNumber">{{ equipement.modelNumber }}</span>
+      </div>
+      <div class="equipement-info">
+        <i class="right-arrow" [routerLink]="['/equipement', equipement.id, 'view']"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex bottom-column" style="gap: 10px">
+    <button class="footer-button" routerLinkActive="active" [routerLink]="['/reportProblem', park.id!]">
+      <fa-icon [icon]="['fas', 'exclamation-circle']" size="1x"></fa-icon> Report a problem
+    </button>
+  </div>
+</div>

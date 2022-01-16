@@ -8,7 +8,7 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from '@ngx-translate/core';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import * as dayjs from 'dayjs';
-import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDatepickerConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SERVER_API_URL } from './app.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
@@ -21,6 +21,7 @@ import { EntityRoutingModule } from './entities/entity-routing.module';
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { fontAwesomeIcons } from './config/font-awesome-icons';
 import { httpInterceptorProviders } from 'app/core/interceptor/index';
+import { FindLanguageFromKeyPipe } from 'app/shared/language/find-language-from-key.pipe';
 import { translatePartialLoader, missingTranslationHandler } from './config/translation.config';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
@@ -28,9 +29,31 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { UrbanixModule } from './urbanix/urbanix.module';
+import { MenuComponent } from './layouts/menu/menu.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { AdminSideNavComponent } from './layouts/admin-side-nav/admin-side-nav.component';
+import { AdminNavBarComponent } from './layouts/admin-side-nav/admin-nav-bar.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
+    FormsModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    NgbModule,
+    UrbanixModule,
     BrowserModule,
     SharedModule,
     HomeModule,
@@ -57,9 +80,21 @@ import { ErrorComponent } from './layouts/error/error.component';
     Title,
     { provide: LOCALE_ID, useValue: 'en' },
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
+    FindLanguageFromKeyPipe,
     httpInterceptorProviders,
+    DeviceDetectorService,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    MainComponent,
+    MenuComponent,
+    AdminSideNavComponent,
+    AdminNavBarComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+  ],
   bootstrap: [MainComponent],
 })
 export class AppModule {

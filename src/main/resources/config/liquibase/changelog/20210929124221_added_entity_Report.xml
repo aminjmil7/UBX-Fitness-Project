@@ -14,10 +14,10 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="mail" type="varchar(255)">
+            <column name="mail" type="nvarchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="message" type="varchar(255)">
+            <column name="message" type="nvarchar(1000)">
                 <constraints nullable="true" />
             </column>
             <column name="date" type="${datetimeType}">

@@ -1,0 +1,27 @@
+<div class="content-side-bar">
+  <nav>
+    <div routerLink="/Admin" (click)="selectedRoute = 'admin'" [ngClass]="selectedRoute === 'admin' ? 'admin-selected' : 'admin'">
+      <div [ngClass]="selectedRoute === 'admin' ? 'password-org' : 'password'"></div>
+    </div>
+
+    <div routerLink="/Admin/user" (click)="selectedRoute = 'user'" [ngClass]="selectedRoute === 'user' ? 'admin-selected' : 'admin'">
+      <div [ngClass]="selectedRoute === 'user' ? 'users-org' : 'users'"></div>
+    </div>
+
+    <div
+      routerLink="/Admin/equipement"
+      (click)="selectedRoute = 'equipement'"
+      [ngClass]="selectedRoute === 'equipement' ? 'admin-selected' : 'admin'"
+    >
+      <div [ngClass]="selectedRoute === 'equipement' ? 'menu-org' : 'menu'"></div>
+    </div>
+
+    <div routerLink="/Admin/park" (click)="selectedRoute = 'park'" [ngClass]="selectedRoute === 'park' ? 'admin-selected' : 'admin'">
+      <div [ngClass]="selectedRoute === 'park' ? 'pin-org' : 'pin'"></div>
+    </div>
+
+    <div routerLink="/Admin/report" (click)="selectedRoute = 'report'" [ngClass]="selectedRoute === 'report' ? 'admin-selected' : 'admin'">
+      <div [ngClass]="selectedRoute === 'report' ? 'warning-org' : 'warning'"></div>
+    </div>
+  </nav>
+</div>

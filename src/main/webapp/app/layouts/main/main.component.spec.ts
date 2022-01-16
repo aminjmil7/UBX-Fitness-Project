@@ -7,6 +7,7 @@ import { Subject, of } from 'rxjs';
 import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 import { AccountService } from 'app/core/auth/account.service';
+import { FindLanguageFromKeyPipe } from 'app/shared/language/find-language-from-key.pipe';
 
 import { MainComponent } from './main.component';
 
@@ -31,6 +32,7 @@ describe('Component Tests', () => {
           declarations: [MainComponent],
           providers: [
             Title,
+            FindLanguageFromKeyPipe,
             AccountService,
             {
               provide: Router,

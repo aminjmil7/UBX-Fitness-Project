@@ -1,0 +1,193 @@
+.content-side-bar {
+  padding-top: 100px;
+}
+.content-nav-bar {
+  padding-left: 100px;
+  height: 60px;
+}
+.badge-ubx {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  height: 100%;
+}
+
+.user-content {
+  height: 60px;
+}
+
+.user {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/user-white.png') no-repeat center top;
+  background-size: contain;
+}
+
+.user-name {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  color: #020202;
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.exit {
+  position: relative;
+  right: 5%;
+  top: 20%;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url('../../../content/images/exit.png') no-repeat center top;
+  background-size: contain;
+}
+
+.admin {
+  cursor: pointer;
+  text-align: center;
+  border-radius: 25%;
+  margin: 0 15px;
+  padding: 10%;
+  width: 40px;
+  height: 40px;
+}
+
+.admin-selected {
+  cursor: pointer;
+  background-color: #f6faff;
+  text-align: center;
+  border-radius: 25%;
+  color: #ff8d00;
+  margin: 0 15px;
+  padding: 10%;
+  width: 40px;
+  height: 40px;
+}
+
+.user-org {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/user-org.png') no-repeat center top;
+  background-size: contain;
+}
+
+.users {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/users.png') no-repeat center top;
+  background-size: contain;
+}
+
+.users-org {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/users-org.png') no-repeat center top;
+  background-size: contain;
+}
+
+.warning {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/warning.png') no-repeat center top;
+  background-size: contain;
+}
+
+.warning-org {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/warning-org.png') no-repeat center top;
+  background-size: contain;
+}
+
+.menu {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/menu.png') no-repeat center top;
+  background-size: contain;
+}
+
+.menu-org {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/menu-org.png') no-repeat center top;
+  background-size: contain;
+}
+
+.password {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/password.png') no-repeat center top;
+  background-size: contain;
+}
+
+.password-org {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/password-org.png') no-repeat center top;
+  background-size: contain;
+}
+
+.pin {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/pin.png') no-repeat center top;
+  background-size: contain;
+}
+
+.pin-org {
+  position: relative;
+  right: 12%;
+  top: 20%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../content/images/icons/pin-org.png') no-repeat center top;
+  background-size: contain;
+}

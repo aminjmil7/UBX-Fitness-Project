@@ -1,0 +1,22 @@
+<div class="login-body">
+  <div class="bg-white d-flex justify-content-center p-3 login-content">
+    <div class="w-100">
+      <div class="admin-space">
+        <img src="../../content/images/ubx-badge-white.PNG" alt="badge" class="badge-ubx" />
+      </div>
+      <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="login.form.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="username" id="username" formControlName="username" #username data-cy="username" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="login.form.password" for="field_password">Password</label>
+          <input type="password" class="form-control" name="password" id="password" formControlName="password" data-cy="password" />
+        </div>
+
+        <button type="submit" class="admin-button" jhiTranslate="login.form.button" data-cy="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

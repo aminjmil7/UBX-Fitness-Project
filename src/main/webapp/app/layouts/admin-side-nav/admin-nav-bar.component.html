@@ -1,0 +1,9 @@
+<div class="content-nav-bar">
+  <img src="../../../content/images/ubx-badge-white.PNG" alt="badge" class="badge-ubx" />
+
+  <div class="text-right user-content">
+    <div class="user" *ngIf="currentUser"></div>
+    <div class="user-name" *ngIf="currentUser">{{ currentUser.login! }}</div>
+    <div class="exit" (click)="logout()"></div>
+  </div>
+</div>

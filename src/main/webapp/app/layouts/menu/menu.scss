@@ -1,0 +1,90 @@
+.container {
+  background-color: #f6faff;
+  width: 100%;
+  min-height: 500px;
+  margin: auto;
+}
+.menu {
+  background-color: #f6faff;
+}
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+mat-drawer {
+  min-width: 200px;
+}
+.body {
+  background-color: #f6faff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+span {
+  display: flex;
+  margin-bottom: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.wrapper {
+  padding: 15px;
+}
+.icon {
+  height: 1.2rem;
+  margin-right: 0.5rem;
+}
+ngb-carousel .wrapper {
+  position: relative;
+  height: 0;
+  padding-top: 55%; /* Keep ratio for 900x500 images */
+  border-radius: 15px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+ngb-carousel .wrapper > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.footer-button {
+  background: white;
+  border: none;
+  border-width: 0px;
+  box-shadow: 0.3px 1px 12px 1px #80808085;
+  border-radius: 5px;
+  min-height: 35px;
+}
+.up {
+  transform: rotate(0deg);
+  transition: transform 0.5s linear;
+  color: #c1cddb;
+}
+
+.up.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.5s linear;
+}
+
+.exit {
+  display: inline-block;
+  width: 20px;
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  background: url('../../../content/images/exit.png') no-repeat center top;
+  background-size: contain;
+}
