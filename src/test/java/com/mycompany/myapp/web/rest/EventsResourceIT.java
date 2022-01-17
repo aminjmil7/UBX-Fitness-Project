@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.mycompany.myapp.IntegrationTest;
 import com.mycompany.myapp.domain.Events;
 import com.mycompany.myapp.repository.EventsRepository;
-import com.mycompany.myapp.service.criteria.EventsCriteria;
 import com.mycompany.myapp.service.dto.EventsDTO;
 import com.mycompany.myapp.service.mapper.EventsMapper;
 import java.time.Instant;

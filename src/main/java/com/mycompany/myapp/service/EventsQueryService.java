@@ -7,7 +7,6 @@ import com.mycompany.myapp.service.criteria.EventsCriteria;
 import com.mycompany.myapp.service.dto.EventsDTO;
 import com.mycompany.myapp.service.mapper.EventsMapper;
 import java.util.List;
-import javax.persistence.criteria.JoinType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;

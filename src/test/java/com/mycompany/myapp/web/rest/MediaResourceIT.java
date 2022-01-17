@@ -12,7 +12,6 @@ import com.mycompany.myapp.domain.Park;
 import com.mycompany.myapp.domain.Report;
 import com.mycompany.myapp.domain.enumeration.AuthType;
 import com.mycompany.myapp.repository.MediaRepository;
-import com.mycompany.myapp.service.criteria.MediaCriteria;
 import com.mycompany.myapp.service.dto.MediaDTO;
 import com.mycompany.myapp.service.mapper.MediaMapper;
 import java.util.List;

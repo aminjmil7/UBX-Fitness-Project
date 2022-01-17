@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Spring Data SQL repository for the Media entity.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings("")
 @Repository
 public interface MediaRepository extends JpaRepository<Media, Long>, JpaSpecificationExecutor<Media> {}

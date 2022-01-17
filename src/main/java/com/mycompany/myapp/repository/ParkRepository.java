@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Spring Data SQL repository for the Park entity.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings("")
 @Repository
 public interface ParkRepository extends JpaRepository<Park, Long>, JpaSpecificationExecutor<Park> {}

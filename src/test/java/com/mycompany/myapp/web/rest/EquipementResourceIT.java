@@ -11,7 +11,6 @@ import com.mycompany.myapp.domain.Media;
 import com.mycompany.myapp.domain.Park;
 import com.mycompany.myapp.domain.Report;
 import com.mycompany.myapp.repository.EquipementRepository;
-import com.mycompany.myapp.service.criteria.EquipementCriteria;
 import com.mycompany.myapp.service.dto.EquipementDTO;
 import com.mycompany.myapp.service.mapper.EquipementMapper;
 import java.util.List;

@@ -11,7 +11,6 @@ import com.mycompany.myapp.domain.Media;
 import com.mycompany.myapp.domain.Park;
 import com.mycompany.myapp.domain.Report;
 import com.mycompany.myapp.repository.ReportRepository;
-import com.mycompany.myapp.service.criteria.ReportCriteria;
 import com.mycompany.myapp.service.dto.ReportDTO;
 import com.mycompany.myapp.service.mapper.ReportMapper;
 import java.time.Instant;

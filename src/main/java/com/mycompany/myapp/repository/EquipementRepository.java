@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Spring Data SQL repository for the Equipement entity.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings("")
 @Repository
 public interface EquipementRepository extends JpaRepository<Equipement, Long>, JpaSpecificationExecutor<Equipement> {}

@@ -12,7 +12,6 @@ import com.mycompany.myapp.domain.Media;
 import com.mycompany.myapp.domain.Park;
 import com.mycompany.myapp.domain.Report;
 import com.mycompany.myapp.repository.ParkRepository;
-import com.mycompany.myapp.service.criteria.ParkCriteria;
 import com.mycompany.myapp.service.dto.ParkDTO;
 import com.mycompany.myapp.service.mapper.ParkMapper;
 import java.math.BigDecimal;
