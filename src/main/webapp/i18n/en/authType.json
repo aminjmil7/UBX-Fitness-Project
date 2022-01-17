@@ -1,0 +1,9 @@
+{
+  "ubxFitnessApp": {
+    "AuthType": {
+      "null": "",
+      "LEARN": "LEARN",
+      "TECHFILE": "TECHFILE"
+    }
+  }
+}
